@@ -37,10 +37,19 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div id="header" >
-            <h3 >RAKE Showcase   <a href="#" style="font-size:15px;">Try It Yourself</a></h3>
-            
-        </div>
+       <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="default.aspx">Research Clouds - Keywords</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="default.aspx">Example</a></li>
+                    <li><a href="TryRake.aspx">Try It Yourself</a></li>
+                    <li ><a href="AmitRakeTest.aspx">Amit's Articles</a></li>
+                    
+                </ul>
+            </div>
+        </nav>
         <br />
         <div class="container">
 

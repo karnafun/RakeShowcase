@@ -15,7 +15,7 @@ public partial class TryRake : System.Web.UI.Page
     protected void submitBTN_Click(object sender, EventArgs e)
     {
         string stopListPath = MapPath(".") + "/Files/SmartStoplist.txt";
-        Rake rake = new Rake(stopListPath, 1, 20, 1);
+        Rake rake = new Rake(stopListPath, 1, 4, 1);
         string text = textTB.Text;
         var results = rake.Run(text);
 
@@ -23,9 +23,9 @@ public partial class TryRake : System.Web.UI.Page
         int counter = 1;
         foreach (var item in results.Keys)
         {
-            if (results[item] >= 4)
+            if (results[item] >= 7)
             {
-                res += (counter++) + ") " + item;
+                res += (counter++) + ") " + item +", "+results[item].ToString();
                 if (results.Keys.Last() != item)
                 {
                     res += "<br>";
