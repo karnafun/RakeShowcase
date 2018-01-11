@@ -616,7 +616,7 @@ These criteria and the corresponding algorithms for constructing a minimal suppo
         return sample1;
     }
 
-    public IList<string> Expected()
+    public IList<string> ExpectedSample1()
     {
         List<string> expected = new List<string>();
 
@@ -638,6 +638,23 @@ These criteria and the corresponding algorithms for constructing a minimal suppo
         expected.Add("upper bound");
         expected.Add("natural numbers");
         expected.Add("nonstrict inequations");
+
+        return expected;
+    }
+
+
+    public IList<string> ExpectedTest()
+    {
+        List<string> expected = new List<string>();
+
+        
+        expected.Add("");
+        expected.Add("");
+        expected.Add("");
+        expected.Add("");
+        expected.Add("");
+        expected.Add("");
+        expected.Add("");
 
         return expected;
     }

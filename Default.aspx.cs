@@ -14,9 +14,6 @@ public partial class _Default : System.Web.UI.Page
 
 
 
-
-
-
     protected void DisplayResults()
     {
            //get rake and text reults
@@ -28,7 +25,7 @@ public partial class _Default : System.Web.UI.Page
 
         //calculate results vs expected
         var resultsString = results.Keys.ToArray();
-        var expected = cheat.Expected();
+        var expected = cheat.ExpectedSample1();
         var match = KeywordsFound(resultsString, expected);
         var topResults = TopResults(results);
         var missed = KeywordsMissed(resultsString, expected);
@@ -49,10 +46,7 @@ public partial class _Default : System.Web.UI.Page
         List<string> res = new List<string>();
         foreach (string item in results)
         {
-            if (item == "upper bound")
-            {
-                var t = 0;
-            }
+           
             if (expected.Contains(item))
             {
                 res.Add(item);

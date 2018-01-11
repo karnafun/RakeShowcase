@@ -1,18 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" MasterPageFile="~/Admin.master" Inherits="_Default" %>
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Rake Example</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style>
         .lbl {
            
@@ -23,35 +12,21 @@
             color: white;
         }
 
-        #resultsTable td {
+     
+      .td{
             border: 3px solid black;
             width: 400px;
             padding:10px;
+           
             
-        }
-      
+      }
         .highlight {
             background-color: green;
         }
     </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-       <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="default.aspx">Research Clouds - Keywords</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="default.aspx">Example</a></li>
-                    <li><a href="TryRake.aspx">Try It Yourself</a></li>
-                    <li ><a href="AmitRakeTest.aspx">Amit's Articles</a></li>
-                    
-                </ul>
-            </div>
-        </nav>
-        <br />
-        <div class="container">
+
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
 
             <label>Keyword Extraction on the following text:</label>
@@ -61,19 +36,19 @@
             <br />
             <asp:Table runat="server" ID="resultsTable">
                 <asp:TableRow>
-                    <asp:TableCell>
+                    <asp:TableCell CssClass="td">
                         <asp:Label CssClass="lbl" runat="server" ID="lbl_match"></asp:Label>
                     </asp:TableCell>
-                    <asp:TableCell>
+                    <asp:TableCell CssClass="td">
                         <asp:Label CssClass="lbl" runat="server" ID="lbl_misses"></asp:Label>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell>
+                    <asp:TableCell CssClass="td">
 
                         <asp:Label CssClass="lbl" runat="server" ID="lbl_newWords"></asp:Label>
                     </asp:TableCell>
-                    <asp:TableCell>
+                    <asp:TableCell CssClass="td">
 
                         <asp:Label CssClass="lbl" runat="server" ID="lbl_expected"></asp:Label>
                     </asp:TableCell>
@@ -82,10 +57,9 @@
 
 
 
+</asp:Content>
 
 
 
-        </div>
-    </form>
-</body>
-</html>
+
+
