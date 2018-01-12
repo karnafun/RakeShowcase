@@ -4,6 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Presentation</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -21,14 +23,23 @@
             color: black;
         }
 
+        h2 {
+            font-weight: 700;
+        }
+
+        h3 {
+            text-decoration: underline;
+        }
+
         p {
             font-size: 1.6em
         }
 
         #header {
-            background-color: black;
-            color: grey;
+
             text-align: center;
+            margin-bottom: 50px;
+
         }
 
         #div_goals {
@@ -39,16 +50,28 @@
 
         #div_forMarch {
         }
+
+        .jumbotron:hover {
+            background-color: rgba(120,206,244,0.3)
+        }
+
+        .container {
+            margin-top: 10px;
+        }
+        #header img{
+            height:150px;
+        }
     </style>
 
 </head>
 <body>
     <form id="form1" runat="server">
-        <div id="header">
-            <h1>Research Clouds - Presentation</h1>
-        </div>
+
         <div class="container">
-            <div id="div_goals">
+            <div id="header">
+               <img src="images/mapmeImge.png" />
+            </div>
+            <div id="div_goals" class="jumbotron">
                 <h2>מטרות הפרוייקט</h2>
                 <p>
                     מטרת מערכת ענני מחקר היא לסייע לחוקרים בתחומים שונים ממקומות שונים למצוא שיתופי פעולה
@@ -56,7 +79,7 @@
                 </p>
             </div>
 
-            <div id="div_mainModules">
+            <div id="div_mainModules" class="jumbotron">
                 <h2>מודולים מרכזיים </h2>
                 <h3>הוצאת מילות\משפטי מפתח </h3>
                 <p>
@@ -99,7 +122,7 @@
                     תחת שם המוסד הזה
                 </p>
             </div>
-            <div id="div_forMarch">
+            <div id="div_forMarch" class="jumbotron">
                 <h2>הגשה מתוכננת לסוף מרץ</h2>
                 <h3>הוכחת יכולת על מסד נתונים פיקטיבי</h3>
                 <p>
@@ -114,7 +137,7 @@
             </div>
 
 
-            <div id="div_resources">
+            <div id="div_resources" class="jumbotron">
                 <h2>מה עשינו בנתיים</h2>
                 <h3>התחלת בניית מסכים</h3>
                 <p>
