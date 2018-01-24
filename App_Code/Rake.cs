@@ -127,17 +127,17 @@ public class Rake
             {
                 if (!wordFrequency.ContainsKey(word)) wordFrequency[word] = 0;
 
-                wordFrequency[word] = wordFrequency[word] + 1;
+                wordFrequency[word]++;
 
                 if (!wordDegree.ContainsKey(word)) wordDegree[word] = 0;
 
-                wordDegree[word] = wordDegree[word] + wordListDegree; // orig.
-                                                                      // word_degree[word] += 1/(word_list_length*1.0) #exp.
+                wordDegree[word] += wordListDegree; // orig.
+                                                    // word_degree[word] += 1/(word_list_length*1.0) #exp.
             }
         }
         foreach (var item in wordFrequency)
         {
-            wordDegree[item.Key] = wordDegree[item.Key] + wordFrequency[item.Key];
+            wordDegree[item.Key] += wordFrequency[item.Key];
         }
 
         // Calculate Word scores = deg(w)/frew(w)
@@ -147,7 +147,8 @@ public class Rake
             if (!wordScore.ContainsKey(item.Key)) wordScore[item.Key] = 0;
 
             wordScore[item.Key] = wordDegree[item.Key] / (wordFrequency[item.Key] * 1.0); // orig.
-                                                                                          // word_score[item] = word_frequency[item]/(word_degree[item] * 1.0) #exp.
+            // wordScore[item.Key] = wordFrequency[item.Key] / (wordDegree[item.Key] * 1.0);//#exp.
+            //wordScore[item.Key] = (wordFrequency[item.Key]*1.0) / wordDegree[item.Key] ;//#exp.
         }
 
         return wordScore;

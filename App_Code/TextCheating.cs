@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Web;
 
+public enum ExampleArticles { KnowledgeAndSocialNetworks, NotAllIsGoldThatGlitters, HackersTopologyMatterGeography }
+public enum KeywordResources { IEEE, INSPEC_Controlled, INSPEC_Non_Controlled, Author, ALL }
 /// <summary>
 /// Summary description for TextCheating
 /// </summary>
@@ -16,11 +18,11 @@ public class TextCheating
         //
     }
     public string stopWordsPath;
-    public  IList<string> StopList()
+    public IList<string> StopList()
     {
         string stopwords;
         #region words
-        stopwords= @"a
+        stopwords = @"a
 a's
 able
 about
@@ -594,7 +596,7 @@ zero";
 
 
 
-#endregion
+        #endregion
 
 
         return stopwords.Split(' '); ;
@@ -642,20 +644,223 @@ These criteria and the corresponding algorithms for constructing a minimal suppo
         return expected;
     }
 
-
-    public IList<string> ExpectedTest()
+    /// <summary>
+    /// Knowledge and Social Networks in Yahoo! Answers
+    /// </summary>
+    /// <returns>All keywords </returns>
+    public IList<string> ExpectedKeywords(ExampleArticles article, KeywordResources resource)
     {
-        List<string> expected = new List<string>();
+        string path = HttpContext.Current.Server.MapPath(".") + "/Files/Amit Article Text/Online Keywords/";
+        switch (article)
+        {
+            case ExampleArticles.KnowledgeAndSocialNetworks:
+                path += "Knowledge and Social Networks.txt";
+                break;
+            case ExampleArticles.NotAllIsGoldThatGlitters:
+                path += "Not All Is Gold That Glitters .txt";
+                break;
+            case ExampleArticles.HackersTopologyMatterGeography:
+                path += "Hackers topology matter geography.txt";
+                break;
+            default:
+                break;
+        }
+        List<string> ieee = new List<string>();
+        List<string> inspec_controlled = new List<string>();
+        List<string> inspec_non_controlled = new List<string>();
+        List<string> author = new List<string>();
+        string[] res = File.ReadAllLines(path);
+        for (int i = 0; i < res.Length - 1; i++)
+        {
+            if (res[i].ToLower().Trim().Contains("ieee"))
+            {
+                ieee = res[i + 1].ToLower().Trim().Split(',').ToList();
+            }
+            else if (res[i].ToLower().Trim().Contains("inspec - controlled"))
+            {
+                inspec_controlled = res[i + 1].ToLower().Trim().Split(',').ToList();
+            }
+            else if (res[i].ToLower().Trim().Contains("inspec - non"))
+            {
+                inspec_non_controlled = res[i + 1].ToLower().Trim().Split(',').ToList();
+            }
+            else if (res[i].ToLower().Trim().Contains("author keywords"))
+            {
+                author = res[i + 1].ToLower().Trim().Split(',').ToList();
+            }
+        }
 
-        
-        expected.Add("");
-        expected.Add("");
-        expected.Add("");
-        expected.Add("");
-        expected.Add("");
-        expected.Add("");
-        expected.Add("");
+        switch (resource)
+        {
+            case KeywordResources.IEEE:
+                return ieee;
 
-        return expected;
+            case KeywordResources.INSPEC_Controlled:
+                return inspec_controlled;
+            case KeywordResources.INSPEC_Non_Controlled:
+                return inspec_non_controlled;
+            case KeywordResources.Author:
+                return author;
+            case KeywordResources.ALL:
+                List<string> all = new List<string>();
+                all.AddRange(ieee);
+                all.AddRange(inspec_controlled);
+                all.AddRange(inspec_non_controlled);
+                all.AddRange(author);
+                return all;
+            default:
+                return null;
+        }
+
+    }
+
+    public string GetArticleText(ExampleArticles article)
+    {
+        string path = HttpContext.Current.Server.MapPath(".") + "/Files/Amit Article Text/";
+        switch (article)
+        {
+            case ExampleArticles.KnowledgeAndSocialNetworks:
+                path += "knowledge_and_Social_Networks_in_Yahoo_Answers_HICSS_12092011.txt";
+                break;
+            case ExampleArticles.NotAllIsGoldThatGlitters:
+                path += "Not_all_is_Gold_that_Glitters_Response_t.txt";
+                break;
+            case ExampleArticles.HackersTopologyMatterGeography:
+                path += "Hackers_Topology_Matter_Geography.txt";
+                break;
+            default:
+                break;
+        }
+        return File.ReadAllText(path);
+
+    }
+
+   public List<string> BestResultsOnHackers()
+    {
+        /*
+         * To get these results i used to following paremerts: Rake.Run(minimumCharLength, maximumWordsLength, minimumWordsFrequency)
+         * 4 and 3 words phrases: rake.run(1, 4, 2)
+         * 2 words phrases: rake.run(1,2,2) - i think i should have went with 1,2,3 
+         * 1 word keywords: rake.run(1,1,7) -- i dont think 8 would be good enough
+         */
+
+        string resultStr = "";
+        #region results string
+        resultStr += @"successful brute force attacks
+2015 ieee/acm international conference
+system trespassing events
+dynamic social networks
+social networks analysis
+online social networks
+israeli hp networks
+data collection period
+street segments
+justice statistics
+geographic positions
+betweenness centrality
+geographic distance
+real world
+geographical distance
+system trespassing
+geographic location
+trespassing event
+university press
+israeli hp
+authority centrality
+topological positions
+trespassing events
+“major players”
+american journal
+main countries
+physical distance
+hacking activities
+sans institute
+social science
+hacking activity
+main nodes
+social networks
+system trespassers
+top hub
+degree centrality
+international journal
+israeli networks
+target computer
+collected information
+centrality” countries
+ip address
+unique countries
+target computers
+israeli network
+attacking computers
+follow onnela
+total number
+ip addresses
+hacking countries
+hacking networks
+sessions relation
+united states
+computer networks
+chinese hp
+hacking data
+network analysis
+attacks originated
+network topology
+chinese network
+graph 1
+graph 2
+graph 5
+graph 6
+graph 8
+graph 9
+graph 10
+figures 1
+figure 1
+figure 2
+figure 3
+table 1
+& cukier
+hp
+hacking
+system
+computers
+study
+countries
+networks
+sessions
+research
+network
+nodes
+internet
+data
+hackers
+topology
+geography
+cyberspace
+chinese
+structure
+number
+attacks
+attackers
+country
+found
+honey
+present
+bfa
+pots
+israel
+behavior
+influence
+china
+links
+advances
+mining
+al
+topologies
+";
+        #endregion
+
+        string[] testing = resultStr.Split('\n');
+        return testing.ToList();
+
     }
 }
