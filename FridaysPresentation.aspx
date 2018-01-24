@@ -20,7 +20,12 @@
             text-align: right;
             color: black;
         }
-
+        h2{
+            font-weight:700;
+        }
+        h3{
+            text-decoration:underline;
+        }
         p {
             font-size: 1.6em
         }
